@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>ru.practicum</groupId>
-        <artifactId>stats-service</artifactId>
+        <artifactId>stats-server</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>stat-server</artifactId>
+    <artifactId>server</artifactId>
 
     <properties>
         <java.version>11</java.version>
@@ -42,7 +42,7 @@
 
         <dependency>
             <groupId>ru.practicum</groupId>
-            <artifactId>stat-client</artifactId>
+            <artifactId>client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -61,7 +61,7 @@
 
         <dependency>
             <groupId>ru.practicum</groupId>
-            <artifactId>stat-dto</artifactId>
+            <artifactId>dto</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
