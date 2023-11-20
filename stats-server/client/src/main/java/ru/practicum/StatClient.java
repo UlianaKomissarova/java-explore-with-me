@@ -11,27 +11,30 @@ import ru.practicum.dto.EndpointHitDto;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static ru.practicum.StatClient.QueryParameters.*;
+
 @Service
 public class StatClient extends BaseClient {
     private static final String GET_PREFIX = "/stats";
     private static final String POST_PREFIX = "/hit";
 
     @Autowired
-    public StatClient(@Value("http://localhost:9090") String serverUrl, RestTemplateBuilder builder) {
+    public StatClient(@Value("http://localhost:9090") String serverUrl, RestTemplateBuilder builder, ExceptionHandler exceptionHandler) {
         super(
             builder
                 .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
                 .requestFactory(HttpComponentsClientHttpRequestFactory::new)
-                .build()
+                .build(),
+            exceptionHandler
         );
     }
 
     public ResponseEntity<Object> getViewStats(String start, String end, List<String> uris, Boolean unique) {
         Map<String, Object> parameters = Map.of(
-            QueryParametersInterface.START, LocalDateTime.parse(start),
-            QueryParametersInterface.END, LocalDateTime.parse(end),
-            QueryParametersInterface.URIS, uris,
-            QueryParametersInterface.UNIQUE, unique
+            START, LocalDateTime.parse(start),
+            END, LocalDateTime.parse(end),
+            URIS, uris,
+            UNIQUE, unique
         );
 
         return get(GET_PREFIX + "?start={start}&end={end}&uris={uris}&unique={unique}", parameters);
@@ -39,5 +42,12 @@ public class StatClient extends BaseClient {
 
     public ResponseEntity<Object> saveHit(EndpointHitDto dto) {
         return post(POST_PREFIX, dto);
+    }
+
+    public static class QueryParameters {
+        public static final String START = "start";
+        public static final String END = "end";
+        public static final String URIS = "uris";
+        public static final String UNIQUE = "unique";
     }
 }

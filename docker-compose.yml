@@ -14,7 +14,7 @@ services:
       - POSTGRES_PASSWORD=iamroot
 
   stats-db:
-    image: postgres:13.7-alpine
+    image: postgres:14-alpine
     container_name: stats-db
     volumes:
       - /var/lib/postgresql/data/
@@ -40,12 +40,12 @@ services:
       - POSTGRES_PASSWORD=iamroot
 
   ewm-db:
-    image: postgres:13.7-alpine
+    image: postgres:14-alpine
     container_name: ewm-db
     volumes:
       - /var/lib/postgresql/data/
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       - POSTGRES_DB=ewm-service
       - POSTGRES_USER=postgres

@@ -3,13 +3,14 @@ package ru.practicum;
 import lombok.AllArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.lang.Nullable;
-import org.springframework.web.client.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
 @AllArgsConstructor
 public class BaseClient {
     protected final RestTemplate rest;
+    private final ExceptionHandler exceptionHandler;
 
     protected ResponseEntity<Object> get(String path, @Nullable Map<String, Object> parameters) {
         return makeAndSendRequest(HttpMethod.GET, path, parameters, null);
@@ -25,17 +26,13 @@ public class BaseClient {
         @Nullable Map<String, Object> parameters,
         @Nullable T body) {
         HttpEntity<T> requestEntity = new HttpEntity<>(body, null);
+        ResponseEntity<Object> statsServiceResponse = exceptionHandler.handleStatsServiceException(
+            requestEntity,
+            method,
+            path,
+            parameters
+        );
 
-        ResponseEntity<Object> statsServiceResponse;
-        try {
-            if (parameters != null) {
-                statsServiceResponse = rest.exchange(path, method, requestEntity, Object.class, parameters);
-            } else {
-                statsServiceResponse = rest.exchange(path, method, requestEntity, Object.class);
-            }
-        } catch (HttpStatusCodeException e) {
-            return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsByteArray());
-        }
         return prepareStatsServiceResponse(statsServiceResponse);
     }
 
