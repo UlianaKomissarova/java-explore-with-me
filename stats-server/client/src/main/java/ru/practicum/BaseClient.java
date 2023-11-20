@@ -10,7 +10,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class BaseClient {
     protected final RestTemplate rest;
-    private final ExceptionHandler exceptionHandler;
+    protected final ExceptionHandler exceptionHandler;
 
     protected ResponseEntity<Object> get(String path, @Nullable Map<String, Object> parameters) {
         return makeAndSendRequest(HttpMethod.GET, path, parameters, null);
