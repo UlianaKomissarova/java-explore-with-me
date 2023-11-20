@@ -11,7 +11,9 @@ import java.util.Map;
 public class ExceptionHandler {
     private final RestTemplate rest;
 
-    public ExceptionHandler(RestTemplateBuilder builder) {this.rest = builder.build();}
+    public ExceptionHandler(RestTemplateBuilder builder) {
+        this.rest = builder.build();
+    }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(HttpStatusCodeException.class)
     public ResponseEntity<Object> handleHttpClientErrorException(HttpStatusCodeException e) {
