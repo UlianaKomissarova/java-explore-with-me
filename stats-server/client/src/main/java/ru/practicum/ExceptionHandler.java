@@ -25,10 +25,11 @@ public class ExceptionHandler {
         ResponseEntity<Object> statsServiceResponse;
 
         try {
+            String fullUrl = "http://localhost:9090" + path;
             if (parameters != null) {
-                statsServiceResponse = rest.exchange(path, method, requestEntity, Object.class, parameters);
+                statsServiceResponse = rest.exchange(fullUrl, method, requestEntity, Object.class, parameters);
             } else {
-                statsServiceResponse = rest.exchange(path, method, requestEntity, Object.class);
+                statsServiceResponse = rest.exchange(fullUrl, method, requestEntity, Object.class);
             }
         } catch (HttpStatusCodeException e) {
             return handleHttpClientErrorException(e);
