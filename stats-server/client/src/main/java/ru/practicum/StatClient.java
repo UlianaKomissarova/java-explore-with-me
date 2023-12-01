@@ -21,7 +21,7 @@ public class StatClient extends BaseClient {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
-    public StatClient(@Value("http://localhost:9090") String serverUrl, RestTemplateBuilder builder, ExceptionHandler exceptionHandler) {
+    public StatClient(@Value("${stats-client.url}") String serverUrl, RestTemplateBuilder builder, ExceptionHandler exceptionHandler) {
         super(
             builder
                 .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))

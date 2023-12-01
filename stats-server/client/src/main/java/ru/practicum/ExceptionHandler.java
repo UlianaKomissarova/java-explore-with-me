@@ -1,5 +1,6 @@
 package ru.practicum;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -10,6 +11,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExceptionHandler {
     private final RestTemplate rest;
+    @Value("${stats-client.url}")
+    private String clientUrl;
 
     public ExceptionHandler(RestTemplateBuilder builder) {
         this.rest = builder.build();
@@ -25,7 +28,7 @@ public class ExceptionHandler {
         ResponseEntity<Object> statsServiceResponse;
 
         try {
-            String fullUrl = "http://localhost:9090" + path;
+            String fullUrl = clientUrl + path;
             if (parameters != null) {
                 statsServiceResponse = rest.exchange(fullUrl, method, requestEntity, Object.class, parameters);
             } else {

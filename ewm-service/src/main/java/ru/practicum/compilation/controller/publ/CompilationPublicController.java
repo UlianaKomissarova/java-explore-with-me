@@ -20,7 +20,7 @@ public class CompilationPublicController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CompilationDto> findAll(
-        @RequestParam Boolean pinned,
+        @RequestParam(defaultValue = "false") Boolean pinned,
         @RequestParam(defaultValue = "0", required = false) Integer from,
         @RequestParam(defaultValue = "10", required = false) Integer size) {
         log.info("Получение подборок событий");
