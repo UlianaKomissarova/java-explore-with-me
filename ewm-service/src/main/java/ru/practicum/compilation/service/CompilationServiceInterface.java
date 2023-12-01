@@ -1,6 +1,5 @@
 package ru.practicum.compilation.service;
 
-import ru.practicum.category.dto.CategoryDto;
 import ru.practicum.compilation.dto.*;
 
 import java.util.List;
