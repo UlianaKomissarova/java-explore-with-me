@@ -16,15 +16,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NewEventDto {
-    @NotNull
     @NotBlank
     @Length(min = 3, max = 120)
     private String title;
-    @NotNull
     @NotBlank
     @Length(min = 20, max = 2000)
     private String annotation;
-    @NotNull
     @NotBlank
     @Length(min = 20, max = 7000)
     private String description;

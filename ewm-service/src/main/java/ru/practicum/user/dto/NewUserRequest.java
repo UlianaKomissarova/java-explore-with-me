@@ -10,12 +10,10 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewUserRequest {
-    @NotNull
     @NotBlank
     @Length(min = 2, max = 250)
     private String name;
     @Email
-    @NotNull
     @NotBlank
     @Length(min = 6, max = 254)
     private String email;
