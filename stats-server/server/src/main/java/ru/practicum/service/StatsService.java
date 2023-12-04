@@ -3,6 +3,7 @@ package ru.practicum.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.core.exception.exceptions.ViewStatsBadRequestException;
 import ru.practicum.dto.*;
 import ru.practicum.model.*;
 import ru.practicum.repository.StatsRepository;
@@ -25,6 +26,10 @@ public class StatsService implements StatsServiceInterface {
     @Transactional(readOnly = true)
     @Override
     public List<ViewStats> getViewStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
+        if (start.isAfter(end)) {
+            throw new ViewStatsBadRequestException("Старт не может быть после конца");
+        }
+
         if (unique) {
             return statsRepository.getUniqueViewStats(start, end, uris);
         } else {
