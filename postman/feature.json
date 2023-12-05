@@ -587,7 +587,7 @@
               "variable": [
                 {
                   "key": "userId",
-                  "value": "134"
+                  "value": "5005"
                 },
                 {
                   "key": "eventId",
@@ -1316,7 +1316,7 @@
           "response": []
         },
         {
-          "name": "user not found Copy",
+          "name": "find by author not found",
           "event": [
             {
               "listen": "test",
@@ -1369,7 +1369,7 @@
               "variable": [
                 {
                   "key": "userId",
-                  "value": "134"
+                  "value": "5005"
                 }
               ]
             }
