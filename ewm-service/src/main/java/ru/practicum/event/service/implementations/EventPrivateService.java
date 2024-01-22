@@ -134,6 +134,12 @@ public class EventPrivateService implements EventPrivateServiceInterface {
         );
     }
 
+    public void validateEventToAddComment(Event event) {
+        if (event.getState() != PUBLISHED) {
+            throw new CommentConflictException("Невозможно оставить комментарий на неопубликованное событие");
+        }
+    }
+
     private void validateDateForUpdateAndCreateByUser(LocalDateTime eventDate) {
         if (eventDate.isBefore(LocalDateTime.now().plusHours(2))) {
             throw new EventBadRequestException(
