@@ -14,7 +14,7 @@ This is RESTful API that works with the Postgres database.
 - [Sources](#sources)
 
 ## Stack
-- Java 17
+- Java 11
 - Spring Boot
 - Maven
 - Postgres:14-alpine
