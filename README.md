@@ -1,5 +1,5 @@
 # Explore-With-Me
-My graduation project is a task tracker, which will allow users to share information about 
+My graduation project is a event-sharing-project, which will allow users to share information about 
 interesting events and find a company to participate in them.
 
 It consists of two services:
